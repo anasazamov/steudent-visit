@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Documentation</title>
-  <!-- Add any additional styles or scripts here -->
-</head>
+
 <body>
   <h1>API Documentation</h1>
 
