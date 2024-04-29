@@ -5,6 +5,9 @@ from rest_framework.views import APIView
 import image_to_array
 from .serializer import *
 from .models import *
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 # Create your views here.
 
@@ -24,7 +27,7 @@ class AddStudent(APIView):
             serializer = StudentSerializer(students,many=True)
             return Response(serializer.data,status=HTTP_200_OK)
         
-    def post(self,request: Request):
+    def post(self,request: Request,pk):
         data = request.data
         serializer = StudentSerializer(data=data)
         if serializer.is_valid():
@@ -70,5 +73,16 @@ class VisitStudent(APIView):
             return Response(serializer.data,status=HTTP_201_CREATED)
         return Response({"message":"does not find"},status=HTTP_404_NOT_FOUND)
 
-            
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Your API",
+        default_version='v1',
+        description="Description of your API",
+        terms_of_service="https://github.com/anasazamov/steudent-visit",
+        contact=openapi.Contact(email="anasazamov55@gmail.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
