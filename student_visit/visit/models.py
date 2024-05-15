@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
-
 
 # Create your models here.
 class Student(models.Model):
@@ -13,9 +11,9 @@ class Student(models.Model):
 class FaceData(models.Model):
 
     student = models.OneToOneField(to=Student,on_delete=models.CASCADE)
-    face_date = ArrayField(models.FloatField())
+    face_date = models.TextField()
 
-class VisitDay():
+class VisitDay(models.Model):
 
-    student = models.ManyToOneRel(to=Student,on_delete=models.CASCADE)
+    student = models.ForeignKey(Student,on_delete=models.CASCADE)
     visit_date = models.DateTimeField(auto_now_add=True)

@@ -10,7 +10,7 @@ def face_encodings_func(path):
 
 def find_true_index(lst):
     for i, value in enumerate(lst):
-        if value is True:
+        if value == True:
             return i
     return -1
 
