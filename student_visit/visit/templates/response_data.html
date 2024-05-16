@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Visit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .student-info {
+            margin-bottom: 20px;
+        }
+        .student-info p {
+            margin: 5px 0;
+        }
+        .visit-info {
+            margin-bottom: 20px;
+        }
+        .visit-info p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Talaba Davomati</h2>
+        </div>
+        <div class="student-info">
+            <h3>Talaba Ma'lumotlari</h3>
+            <p><strong>ID:</strong> {{student.id}}</p>
+            <p><strong>Familyasi:</strong>{{student.last_name}}</p>
+            <p><strong>Ismi:</strong> {{student.first_name}}</p>
+            <p><strong>Tug'ilgan Kuni:</strong> {{student.birthday}}</p>
+            <p><strong>Telefon Raqami:</strong> {{student.phone_number}}</p>
+        </div>
+        <div class="visit-info">
+            <h3>Davomat Ma'lumoti</h3>
+            <p><strong>ID:</strong> {{id}}</p>
+            <p><strong>Davomat Qilingan Sanasi:</strong> {{ visit_date}}</p>
+        </div>
+    </div>
+    <center>
+        <h1>Button Links</h1>
+    <button onclick="window.location.href='https://jahongir2.pythonanywhere.com/admin'">Admin Panel</button>
+    <button onclick="window.location.href='https://jahongir2.pythonanywhere.com'">Talab qo'shish</button>
+    <button onclick="window.location.href='https://jahongir2.pythonanywhere.com/visit'">Davomat Qilish</button>
+    </center>
+</body>
+</html>

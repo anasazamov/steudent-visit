@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davomat qilish</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="tel"],
+input[type="file"] {
+    width: calc(100% - 12px);
+    padding: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Davomat qilish</h1>
+    <center>
+        <h1>Button Links</h1>
+    <button onclick="window.location.href='https://jahongir2.pythonanywhere.com/admin'">Admin Panel</button>
+    <button onclick="window.location.href='jahongir2.pythonanywhere.com/api/visit-student'">Talab qo'shish</button>
+    </center>
+    <form action="/api/visit-student" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="file_name">Select image:</label>
+        <input type="file" id="file_name" name="file_name"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+
+
+
+
+

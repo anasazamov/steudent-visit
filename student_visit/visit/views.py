@@ -12,8 +12,16 @@ from rest_framework.parsers import MultiPartParser
 import os
 from django.conf import settings
 import numpy
+import time
 
-# Create your views here.
+from django.http import HttpResponse
+from django.shortcuts import render
+
+def add_student(request):
+    return render(request, 'add_student.html')
+
+def visit(request):
+    return render(request, 'visit.html')
 
 class AddStudent(APIView):
     parser_classes = [MultiPartParser]
@@ -46,6 +54,9 @@ class AddStudent(APIView):
             type_data = str(type(face))
             face_str = str(face)
             face_write = FaceData.objects.create(student=Student.objects.get(id=serializer.data["id"]),face_date=face_str)
+            user_agent = request.META.get('HTTP_USER_AGENT')
+            if user_agent is not None and 'Mozilla' in user_agent:
+                return render(request, 'add_data.html',serializer.data)
             return Response(serializer.data,status=HTTP_201_CREATED)
         else:
             return Response({"message":"bad request"},status=HTTP_500_INTERNAL_SERVER_ERROR)
@@ -78,7 +89,12 @@ class VisitStudent(APIView):
             face = all_faces[id_face]
             student = FaceData.objects.get(face_date=face).student
             visit_day = VisitDay.objects.create(student=student)
+            user_agent = request.META.get('HTTP_USER_AGENT')
             serializer = VisitDaySerializer(visit_day)
+            data1 = serializer.data
+            data1['visit_date'] = time.strftime('%d-%m-%Y %H:%M',time.strptime(data1['visit_date'],'%Y-%m-%dT%H:%M:%S.%fZ'))
+            if user_agent is not None and 'Mozilla' in user_agent:
+                return render(request, 'response_data.html',data1)
             return Response(serializer.data,status=HTTP_201_CREATED)
         return Response({"message":"does not found"},status=HTTP_404_NOT_FOUND)
 

@@ -1,3 +1,4 @@
 django
 djangorestframework
 face_recognition
+twilio
